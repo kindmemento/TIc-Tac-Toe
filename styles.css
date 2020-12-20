@@ -1,0 +1,42 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.board {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  width: 100vw;
+  height: 100vh;
+  grid-template-columns: repeat(3, auto);
+}
+
+.cell {
+  text-align: center;
+  font-size: 5rem;
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.cell:first-child, .cell:nth-child(2), .cell:nth-child(3) {
+  border-top: none;
+}
+
+.cell:first-child, .cell:nth-child(4), .cell:nth-child(7) {
+  border-left: none;
+}
+
+.cell:nth-child(7), .cell:nth-child(8), .cell:nth-child(9) {
+  border-bottom: none;
+}
+
+.cell:nth-child(3), .cell:nth-child(6), .cell:nth-child(9) {
+  border-right: none;
+}
