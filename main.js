@@ -1,3 +1,5 @@
+const board = []
+
 const players = () => {
   const one = 'X'
   const two = 'O'
@@ -5,11 +7,9 @@ const players = () => {
   return {one, two}
 }
 
-let player = players().one;
-
-const board = []
-
 const gameBoard = (() => {
+
+  let player = players().one;
 
   const boardContainer = document.createElement('div')
   boardContainer.classList.add('board')
@@ -43,6 +43,8 @@ const gameBoard = (() => {
 
 const checkWinner = () => {
 
+// Check if X's win.
+
   if (board[0] === 'X' && board[0] === board[1] && board[1] === board[2]) {
     console.log(`It's a win!`)
   }
@@ -75,6 +77,7 @@ const checkWinner = () => {
     console.log(`It's a win!`)
   }
 
+//Check if O's win.
   
   if (board[0] === 'O' && board[0] === board[1] && board[1] === board[2]) {
     console.log(`It's a win!`)
@@ -107,5 +110,4 @@ const checkWinner = () => {
   if (board[2] === 'O' && board[2] === board[4] && board[4] === board[6]) {
     console.log(`It's a win!`)
   }
-  
 }
