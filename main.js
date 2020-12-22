@@ -7,11 +7,9 @@ const players = () => {
 
 let player = players().one;
 
-const gameBoard = (() => {
+const board = []
 
-  const board = [
-    '', '', '', '', '', '', '', '', ''
-  ]
+const gameBoard = (() => {
 
   const boardContainer = document.createElement('div')
   boardContainer.classList.add('board')
@@ -25,17 +23,90 @@ const gameBoard = (() => {
 
   cell.addEventListener ('click', (e) => {
     if (player === players().one) {
-      board[i] = 'X'
-      cell.innerText = board[i]
+      cell.innerText = 'X'
+      board[i] = cell.innerText
       player = players().two
+      console.log(board[i])
     } else {
-      board[i] = 'O'
-      cell.innerText = board[i]
+      cell.innerText = 'O'
+      board[i] = cell.innerText
       player = players().one
+      console.log(board[i])
     }
+
+    checkWinner()
+
   }, {once: true})
   }
 
-  return {board}
-
 })()
+
+const checkWinner = () => {
+
+  if (board[0] === 'X' && board[0] === board[1] && board[1] === board[2]) {
+    console.log(`It's a win!`)
+  }
+
+  if (board[3] === 'X' && board[3] === board[4] && board[4] === board[5]) {
+    console.log(`It's a win!`)
+  }
+
+  if (board[6] === 'X' && board[6] === board[7] && board[7] === board[8]) {
+    console.log(`It's a win!`)
+  }
+
+  if (board[0] === 'X' && board[0] === board[3] && board[3] === board[6]) {
+    console.log(`It's a win!`)
+  }
+
+  if (board[1] === 'X' && board[1] === board[4] && board[4] === board[7]) {
+    console.log(`It's a win!`)
+  }
+
+  if (board[2] === 'X' && board[2] === board[5] && board[5] === board[8]) {
+    console.log(`It's a win!`)
+  }
+
+  if (board[0] === 'X' && board[0] === board[4] && board[4] === board[8]) {
+    console.log(`It's a win!`)
+  }
+
+  if (board[2] === 'X' && board[2] === board[4] && board[4] === board[6]) {
+    console.log(`It's a win!`)
+  }
+
+  
+  if (board[0] === 'O' && board[0] === board[1] && board[1] === board[2]) {
+    console.log(`It's a win!`)
+  }
+
+  if (board[3] === 'O' && board[3] === board[4] && board[4] === board[5]) {
+    console.log(`It's a win!`)
+  }
+
+  if (board[6] === 'O' && board[6] === board[7] && board[7] === board[8]) {
+    console.log(`It's a win!`)
+  }
+
+  if (board[0] === 'O' && board[0] === board[3] && board[3] === board[6]) {
+    console.log(`It's a win!`)
+  }
+
+  if (board[1] === 'O' && board[1] === board[4] && board[4] === board[7]) {
+    console.log(`It's a win!`)
+  }
+
+  if (board[2] === 'O' && board[2] === board[5] && board[5] === board[8]) {
+    console.log(`It's a win!`)
+  }
+
+  if (board[0] === 'O' && board[0] === board[4] && board[4] === board[8]) {
+    console.log(`It's a win!`)
+  }
+
+  if (board[2] === 'O' && board[2] === board[4] && board[4] === board[6]) {
+    console.log(`It's a win!`)
+  }
+
+  return {winningBoard}
+}
