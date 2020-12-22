@@ -38,7 +38,6 @@ const gameBoard = (() => {
 
   }, {once: true})
   }
-
 })()
 
 const checkWinner = () => {
