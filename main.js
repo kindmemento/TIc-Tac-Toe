@@ -107,6 +107,5 @@ const checkWinner = () => {
   if (board[2] === 'O' && board[2] === board[4] && board[4] === board[6]) {
     console.log(`It's a win!`)
   }
-
-  return {winningBoard}
+  
 }
