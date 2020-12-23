@@ -1,5 +1,16 @@
 const board = []
 
+const winningBoard = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [1, 4, 8],
+  [2, 4, 6],
+]
+
 const players = () => {
   const one = 'X'
   const two = 'O'
@@ -7,13 +18,17 @@ const players = () => {
   return {one, two}
 }
 
+let player = players().one;
+
 const gameBoard = (() => {
 
-  let player = players().one;
+  const container = document.createElement('div')
+  container.classList.add('container')
+  document.body.appendChild(container)
 
   const boardContainer = document.createElement('div')
   boardContainer.classList.add('board')
-  document.body.appendChild(boardContainer)
+  container.appendChild(boardContainer)
 
   for (let i = 0; i < 9; i++) {
   const cell = document.createElement('div')
@@ -40,73 +55,41 @@ const gameBoard = (() => {
   }
 })()
 
-const checkWinner = () => {
+function checkWinner() {
+  if (winningBoard.some(array => {
+    return array.every(index => {
+      return (board[index] === 'O')
+    })
+  }) || winningBoard.some(array => {
+    return array.every(index => {
+      return (board[index] === 'X')
+    })
+  })) {
+    const winningMsg = document.createElement('div')
+    const winner = document.createElement('h2')
+    const container = document.querySelector('.container')
+    const body = document.body
+    if (player === 'X') {
+      winner.innerText = `O's Win!`
+    } else {
+      winner.innerText = `X's win!`
+    
+    }
+    winningMsg.classList.add('winner-msg')
+    container.classList.add('win')
+    body.insertBefore(winningMsg, container)
+    winningMsg.appendChild(winner)
 
-// Check if X's win.
+    const reload = document.createElement('button')
+    reload.classList.add('restart')
+    reload.innerText = 'Restart'
+    winningMsg.appendChild(reload)
 
-  if (board[0] === 'X' && board[0] === board[1] && board[1] === board[2]) {
-    console.log(`It's a win!`)
-  }
-
-  if (board[3] === 'X' && board[3] === board[4] && board[4] === board[5]) {
-    console.log(`It's a win!`)
-  }
-
-  if (board[6] === 'X' && board[6] === board[7] && board[7] === board[8]) {
-    console.log(`It's a win!`)
-  }
-
-  if (board[0] === 'X' && board[0] === board[3] && board[3] === board[6]) {
-    console.log(`It's a win!`)
-  }
-
-  if (board[1] === 'X' && board[1] === board[4] && board[4] === board[7]) {
-    console.log(`It's a win!`)
-  }
-
-  if (board[2] === 'X' && board[2] === board[5] && board[5] === board[8]) {
-    console.log(`It's a win!`)
-  }
-
-  if (board[0] === 'X' && board[0] === board[4] && board[4] === board[8]) {
-    console.log(`It's a win!`)
-  }
-
-  if (board[2] === 'X' && board[2] === board[4] && board[4] === board[6]) {
-    console.log(`It's a win!`)
-  }
-
-//Check if O's win.
-  
-  if (board[0] === 'O' && board[0] === board[1] && board[1] === board[2]) {
-    console.log(`It's a win!`)
-  }
-
-  if (board[3] === 'O' && board[3] === board[4] && board[4] === board[5]) {
-    console.log(`It's a win!`)
-  }
-
-  if (board[6] === 'O' && board[6] === board[7] && board[7] === board[8]) {
-    console.log(`It's a win!`)
-  }
-
-  if (board[0] === 'O' && board[0] === board[3] && board[3] === board[6]) {
-    console.log(`It's a win!`)
-  }
-
-  if (board[1] === 'O' && board[1] === board[4] && board[4] === board[7]) {
-    console.log(`It's a win!`)
-  }
-
-  if (board[2] === 'O' && board[2] === board[5] && board[5] === board[8]) {
-    console.log(`It's a win!`)
-  }
-
-  if (board[0] === 'O' && board[0] === board[4] && board[4] === board[8]) {
-    console.log(`It's a win!`)
-  }
-
-  if (board[2] === 'O' && board[2] === board[4] && board[4] === board[6]) {
-    console.log(`It's a win!`)
+    reload.addEventListener ('click', (e) => {
+        const container = document.querySelector('.container')
+        container.classList.remove('win')
+        winningMsg.remove()
+        location.reload()
+      })
   }
 }
